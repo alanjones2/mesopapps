@@ -50,22 +50,22 @@ def home():
         me.markdown( """The World's CO2 emissions have been increasing at an alarming rate since the time of the Industrial Revolution. 
                     We demonstrate the extend of those emissions using two data sets:  the first tracks overall emissions and we show those
                     onto a World map. We also show the breakdown of the sources of those emissions in a set of bar graphs.""")
-        me.markdown("_Click on the buttoms below to see the charts._")
+        me.markdown("_Click on the buttons below to see the charts._")
         
         with me.box(style = FLEX_STYLE):
 
             with me.box():
-                me.image(src = "https://github.com/alanjones2/taipyapps/blob/main/multipage/images/co2emissionspagesmall.png?raw=true",
+                me.image(src = "https://github.com/alanjones2/mesopapps/blob/main/CO2/images/Co2sources.png?raw=true",
                     alt="",
-                    style=me.Style(width="50%")
+                    style=me.Style(width="90%")
                 )
-                me.button("CO2 emissions by source", on_click=navigate, key='CO2')
+                me.button("By source", type='flat',on_click=navigate, key='CO2')
             with me.box():
-                me.image(src = "https://github.com/alanjones2/taipyapps/blob/main/multipage/images/worldtemppagesmall.png?raw=true",
+                me.image(src = "https://github.com/alanjones2/mesopapps/blob/main/CO2/images/Co2country.png?raw=true",
                     alt="",
-                    style=me.Style(width="50%"),
+                    style=me.Style(width="90%"),
                 )
-                me.button("CO2 emissions by country", on_click=navigate, key='map')
+                me.button("By country", type='flat', on_click=navigate, key='map')
 
 def on_selection_change(select):
    global bar_chart

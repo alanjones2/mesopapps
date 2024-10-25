@@ -31,7 +31,7 @@ class CO2_Data:
         fig = px.bar(self.df_cat, x="Year", y=y, 
                     width=1000, template="plotly_white")
         return fig.to_json()
-
+    
     def plot_choro(self,y):
         fig = px.choropleth(self.df_total[self.df_total['Year']==y], 
             locations="Code",                       # The ISO code for the Entity (country)

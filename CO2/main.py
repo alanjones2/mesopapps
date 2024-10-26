@@ -1,24 +1,13 @@
 import mesop as me
 import Sample_Data.CO2_Data as CO2
 from styles import BLOCK_STYLE, BANNER_STYLE, FLEX_STYLE
-
-def chart_html(chart):
-        return f"""
-        <div id='figure'></div>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script>
-        Plotly.react('figure', {chart});
-        </script>
-        <div id='figure'></div>
-        """
+from utils import chart_html, banner
 
 ##### State variable
 @me.stateclass
 class State:
     co2_data = CO2.CO2_Data()
     year = co2_data.year_min
-
-
 
 bar_chart = State.co2_data.plot_chart("Total")
 CO2_map = State.co2_data.plot_choro(State.co2_data.year_max)
@@ -34,11 +23,6 @@ def navigate(event: me.ClickEvent):
             me.navigate("/")
 
 
-def banner(head='', subhead=''):
-    with me.box(style=BANNER_STYLE):
-        me.markdown( f"# {head}", style=me.Style(color="Navy"))
-        me.markdown( f"## {subhead}", style=me.Style(color="SteelBlue"))
-    return banner
 
 ##### Home page
 @me.page(path="/")

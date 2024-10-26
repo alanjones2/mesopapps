@@ -1,18 +1,24 @@
 import mesop as me
 import Sample_Data.CO2_Data as CO2
-from styles import BLOCK_STYLE, BANNER_STYLE, FLEX_STYLE
+from styles import BLOCK_STYLE, FLEX_STYLE
 from utils import chart_html, banner
 
-##### State variable
+### Global data ###
+# The data object
+co2_data = CO2.CO2_Data()
+
+# Set default charts so there is something to display
+bar_chart = co2_data.plot_chart("Total")
+CO2_map = co2_data.plot_choro(co2_data.year_max)
+
+### State variable ###
 @me.stateclass
 class State:
-    co2_data = CO2.CO2_Data()
     year = co2_data.year_min
 
-bar_chart = State.co2_data.plot_chart("Total")
-CO2_map = State.co2_data.plot_choro(State.co2_data.year_max)
 
-##### Navigation
+
+### Navigation ###
 def navigate(event: me.ClickEvent):
     match event.key:
         case "CO2":
@@ -22,12 +28,9 @@ def navigate(event: me.ClickEvent):
         case _:
             me.navigate("/")
 
-
-
-##### Home page
+### Home page ###
 @me.page(path="/")
 def home():    
-
     with me.box(style = BLOCK_STYLE):
         
         banner('World CO2 Emissions','Explore the graphs below')
@@ -51,11 +54,12 @@ def home():
                 )
                 me.button("By country", type='flat', on_click=navigate, key='map')
 
+### CO2 Source page ###
+
 def on_selection_change(select):
    global bar_chart
-   bar_chart = State.co2_data.plot_chart(select.values[0])
+   bar_chart = co2_data.plot_chart(select.values[0])
 
-##### CO2 Source page
 @me.page(path="/CO2")
 def CO2():
     with me.box(style = BLOCK_STYLE):
@@ -81,11 +85,12 @@ def CO2():
             style=me.Style(width="100%", height="500px")
     )
 
-##### Map page
+### Map page ###
+
 def on_slider_change(event):
    global CO2_map
    State.year=int(event.value)
-   CO2_map = State.co2_data.plot_choro(int(event.value))   
+   CO2_map = co2_data.plot_choro(int(event.value))   
 
 @me.page(path="/map")
 def map():

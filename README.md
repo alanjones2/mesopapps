@@ -1,7 +1,7 @@
 ### Code to accompany the article:
 
 
-# [Hands on Data Visualization with Google Mesop](#) 
+# [Hands on Data Visualization with Google Mesop](https://datavizandai.github.io/2024/10/26/atavizmesop.html) 
 
 ### Google Mesop is an easy-to-use Python UI framework. We see how to use it to create Data Visualization app with Plotly.
 
